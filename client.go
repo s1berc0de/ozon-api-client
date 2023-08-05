@@ -1,144 +1,114 @@
 package core
 
 import (
-	"bytes"
-	"context"
-	"encoding/json"
-	"io/ioutil"
+	"github.com/diphantxm/ozon-api-client/auth"
+	"github.com/diphantxm/ozon-api-client/logger"
+	"github.com/diphantxm/ozon-api-client/ozon/category"
+	"github.com/pkg/errors"
 	"net/http"
-	"net/http/httptest"
+	"strings"
+	"time"
 )
 
-type Configuration func(o *Client)
+const (
+	defaultURI = "https://api-seller.ozon.ru"
+)
 
-func WithHttpClient(client HttpClient) Configuration {
-	return func(c *Client) {
-		c.client = client
+type ClientOpts struct {
+	h *http.Client
+
+	uri string
+
+	clientID string
+	apiKey   string
+
+	// Request timeout
+	timeout time.Duration
+}
+
+type Opts func(c *ClientOpts)
+
+func WithURI(uri string) Opts {
+	return func(c *ClientOpts) {
+		c.uri = uri
 	}
 }
 
-func WithContext(ctx context.Context) Configuration {
-	return func(c *Client) {
-		c.ctx = ctx
+func WithClientID(clientID string) Opts {
+	return func(c *ClientOpts) {
+		c.clientID = clientID
 	}
 }
 
-type HttpClient interface {
-	Do(req *http.Request) (*http.Response, error)
+func WithApiKey(apiKey string) Opts {
+	return func(c *ClientOpts) {
+		c.apiKey = apiKey
+	}
+}
+
+func WithClient(h *http.Client) Opts {
+	return func(c *ClientOpts) {
+		c.h = h
+	}
+}
+
+func WithTimeout(dur time.Duration) Opts {
+	return func(c *ClientOpts) {
+		c.timeout = dur
+	}
+}
+
+var (
+	ErrClientIDRequired = errors.New("clientID is required")
+	ErrAPIKeyRequired   = errors.New("apiKey is required")
+)
+
+func NewClient(opts ...Opts) (*Client, error) {
+	c := new(ClientOpts)
+
+	for _, opt := range opts {
+		opt(c)
+	}
+
+	if c.h == nil {
+		c.h = http.DefaultClient
+	}
+
+	if c.h.Transport == nil {
+		c.h.Transport = http.DefaultTransport
+	}
+
+	if strings.EqualFold(c.uri, "") {
+		c.uri = defaultURI
+	}
+
+	if strings.EqualFold(c.clientID, "") {
+		return nil, ErrClientIDRequired
+	}
+
+	if strings.EqualFold(c.apiKey, "") {
+		return nil, ErrAPIKeyRequired
+	}
+
+	if c.h.Timeout == 0 && c.timeout > 0 {
+		c.h.Timeout = c.timeout
+	}
+
+	c.h.Transport = auth.NewRoundTripper(
+		logger.NewRoundTripper(c.h.Transport),
+		c.clientID,
+		c.apiKey,
+	)
+
+	return &Client{
+		category: category.New(c.h, c.uri),
+	}, nil
 }
 
 type Client struct {
-	baseUrl string
-	ctx     context.Context
-	Options map[string]string
-
-	client HttpClient
+	category *category.Category
 }
 
-func NewClient(baseUrl string, opts map[string]string, configs ...Configuration) *Client {
-	c := &Client{
-		Options: opts,
-		ctx:     context.Background(),
-		client:  http.DefaultClient,
-		baseUrl: baseUrl,
-	}
-
-	for _, config := range configs {
-		config(c)
-	}
-
-	return c
-}
-
-func NewMockClient(handler http.HandlerFunc) *Client {
-	return &Client{
-		ctx:    context.Background(),
-		client: NewMockHttpClient(handler),
-	}
-}
-
-func (c Client) newRequest(method string, url string, body interface{}) (*http.Request, error) {
-	bodyJson, err := json.Marshal(body)
-	if err != nil {
-		return nil, err
-	}
-
-	url = c.baseUrl + url
-	req, err := http.NewRequestWithContext(c.ctx, method, url, bytes.NewBuffer(bodyJson))
-	if err != nil {
-		return nil, err
-	}
-
-	for k, v := range c.Options {
-		req.Header.Add(k, v)
-	}
-
-	return req, nil
-}
-
-func (c Client) Request(method string, path string, req, resp interface{}, options map[string]string) (*Response, error) {
-	httpReq, err := c.newRequest(method, path, req)
-	if err != nil {
-		return nil, err
-	}
-	rawQuery, err := buildRawQuery(httpReq, req)
-	if err != nil {
-		return nil, err
-	}
-	httpReq.URL.RawQuery = rawQuery
-
-	httpResp, err := c.client.Do(httpReq)
-	if err != nil {
-		return nil, err
-	}
-	defer httpResp.Body.Close()
-
-	body, err := ioutil.ReadAll(httpResp.Body)
-	if err != nil {
-		return nil, err
-	}
-
-	response := &Response{}
-	response.Data = resp
-	response.StatusCode = httpResp.StatusCode
-	if httpResp.StatusCode == http.StatusOK {
-		err = json.Unmarshal(body, &response.Data)
-	} else {
-		err = json.Unmarshal(body, &response)
-	}
-	if err != nil {
-		return nil, err
-	}
-
-	return response, nil
-}
-
-type MockHttpClient struct {
-	handler http.HandlerFunc
-}
-
-func NewMockHttpClient(handler http.HandlerFunc) *MockHttpClient {
-	return &MockHttpClient{
-		handler: handler,
-	}
-}
-
-func (c MockHttpClient) Do(req *http.Request) (*http.Response, error) {
-	rr := httptest.NewRecorder()
-	c.handler.ServeHTTP(rr, req)
-
-	return rr.Result(), nil
-}
-
-func NewMockHttpHandler(statusCode int, json string, headers map[string]string) http.HandlerFunc {
-	return func(w http.ResponseWriter, r *http.Request) {
-		if len(headers) > 0 {
-			for key, value := range headers {
-				w.Header().Add(key, value)
-			}
-		}
-
-		w.WriteHeader(statusCode)
-		w.Write([]byte(json))
-	}
+func (c Client) Category() *category.Category {
+	return c.category
 }

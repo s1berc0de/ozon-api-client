@@ -1,68 +1,39 @@
-package core
+package core_test
 
 import (
-	"net/http"
+	core "github.com/diphantxm/ozon-api-client"
+	"github.com/stretchr/testify/require"
 	"testing"
 )
 
-type TestRequestRequest struct {
-	FirstField  string `json:"first_field"`
-	SecondField int32  `json:"second_field"`
+const (
+	clientID = "not_empty_client_id"
+	apiKey   = "not_empty_api_key"
+)
+
+func TestNewClient_Success(t *testing.T) {
+	c, err := core.NewClient(
+		core.WithClientID(clientID),
+		core.WithApiKey(apiKey),
+	)
+	require.Nil(t, err)
+	require.NotNil(t, c)
 }
 
-type TestRequestResponse struct {
-	FirstField  string `json:"first_header"`
-	SecondField struct {
-		Key int32 `json:"key"`
-	} `json:"second_header"`
-	ThirdField []struct {
-		FirstElement string `json:"first_element"`
-	} `json:"third_header"`
+func TestNewClient_NoClientID(t *testing.T) {
+	c, err := core.NewClient(
+		core.WithApiKey(apiKey),
+	)
+	require.Nil(t, c)
+	require.NotNil(t, err)
+	require.ErrorIs(t, err, core.ErrClientIDRequired)
 }
 
-func TestRequest(t *testing.T) {
-	tests := []struct {
-		statusCode int
-		headers    map[string]string
-		params     *TestRequestRequest
-		response   string
-	}{
-		{
-			http.StatusOK,
-			map[string]string{
-				"first_header":  "first-value",
-				"second_header": "second-value",
-			},
-			&TestRequestRequest{
-				FirstField:  "test",
-				SecondField: 123,
-			},
-			`{
-				"first_field": "first-value",
-				"second_field": {
-					"key": 12
-				},
-				"third_field": [
-					{
-						"first_element": "first-element-value"
-					}
-				]
-			}`,
-		},
-	}
-
-	for _, test := range tests {
-		c := NewMockClient(NewMockHttpHandler(test.statusCode, test.response, test.headers))
-
-		respStruct := &TestRequestResponse{}
-		resp, err := c.Request(http.MethodPost, "/", test.params, respStruct, nil)
-
-		if err != nil {
-			t.Error(err)
-		}
-
-		if resp.StatusCode != test.statusCode {
-			t.Errorf("got wrong status code: got: %d, expected: %d", resp.StatusCode, test.statusCode)
-		}
-	}
+func TestNewClient_NoAPIKey(t *testing.T) {
+	c, err := core.NewClient(
+		core.WithClientID(clientID),
+	)
+	require.Nil(t, c)
+	require.NotNil(t, err)
+	require.ErrorIs(t, err, core.ErrAPIKeyRequired)
 }
