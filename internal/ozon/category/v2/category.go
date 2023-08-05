@@ -4,8 +4,8 @@ import (
 	"bytes"
 	"context"
 	"encoding/json"
-	"github.com/diphantxm/ozon-api-client/ozon/category/v2/attribute"
-	"github.com/diphantxm/ozon-api-client/ozon/common"
+	"github.com/diphantxm/ozon-api-client/internal/ozon/category/v2/attribute"
+	"github.com/diphantxm/ozon-api-client/internal/ozon/request"
 	"github.com/pkg/errors"
 	"net/http"
 )
@@ -53,5 +53,5 @@ func (c Category) Tree(ctx context.Context, req *TreeRequest) (*TreeResponse, *h
 		return nil, nil, errors.Wrap(err, "TreeRequest.NewRequest")
 	}
 
-	return common.Send[TreeResponse](c.h, r, common.ContentTypeApplicationJson)
+	return request.Send[TreeResponse](c.h, r, request.ContentTypeApplicationJson)
 }

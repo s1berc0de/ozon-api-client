@@ -3,9 +3,9 @@ package attribute_test
 import (
 	"bytes"
 	"context"
-	"github.com/diphantxm/ozon-api-client/auth"
-	"github.com/diphantxm/ozon-api-client/ozon/category/v2/attribute"
-	"github.com/diphantxm/ozon-api-client/test"
+	"github.com/diphantxm/ozon-api-client/internal/auth"
+	attribute2 "github.com/diphantxm/ozon-api-client/internal/ozon/category/v2/attribute"
+	"github.com/diphantxm/ozon-api-client/internal/test"
 	"github.com/stretchr/testify/require"
 	"io"
 	"net/http"
@@ -13,7 +13,7 @@ import (
 )
 
 func TestValues_Success(t *testing.T) {
-	c := attribute.New(
+	c := attribute2.New(
 		test.NewTestClient(
 			auth.NewRoundTripper(
 				test.RoundTripFunc(func(req *http.Request) *http.Response {
@@ -55,7 +55,7 @@ func TestValues_Success(t *testing.T) {
 	)
 	require.NotNil(t, c)
 
-	resp, httpResp, err := c.Values(context.Background(), &attribute.ValuesRequest{
+	resp, httpResp, err := c.Values(context.Background(), &attribute2.ValuesRequest{
 		AttributeId: 10096,
 		CategoryId:  17028968,
 		LastValueId: 0,
@@ -64,8 +64,8 @@ func TestValues_Success(t *testing.T) {
 	require.Nil(t, err)
 	require.NotNil(t, httpResp)
 	require.Equal(t, httpResp.StatusCode, http.StatusOK)
-	require.EqualValues(t, &attribute.ValuesResponse{
-		Result: []attribute.ValuesResponseResult{
+	require.EqualValues(t, &attribute2.ValuesResponse{
+		Result: []attribute2.ValuesResponseResult{
 			{
 				ID:      61571,
 				Value:   "белый",

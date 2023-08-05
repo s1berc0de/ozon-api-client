@@ -4,7 +4,7 @@ import (
 	"bytes"
 	"context"
 	"encoding/json"
-	"github.com/diphantxm/ozon-api-client/ozon/common"
+	"github.com/diphantxm/ozon-api-client/internal/ozon/request"
 	"github.com/pkg/errors"
 	"net/http"
 )
@@ -35,5 +35,5 @@ func (c Category) Attribute(ctx context.Context, req *AttributeRequest) (*Attrib
 		return nil, nil, errors.Wrap(err, "TreeRequest.NewRequest")
 	}
 
-	return common.Send[AttributeResponse](c.h, r, common.ContentTypeApplicationJson)
+	return request.Send[AttributeResponse](c.h, r, request.ContentTypeApplicationJson)
 }

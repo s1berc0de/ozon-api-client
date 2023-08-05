@@ -4,7 +4,7 @@ import (
 	"bytes"
 	"context"
 	"encoding/json"
-	"github.com/diphantxm/ozon-api-client/ozon/common"
+	"github.com/diphantxm/ozon-api-client/internal/ozon/request"
 	"github.com/pkg/errors"
 	"net/http"
 )
@@ -35,5 +35,5 @@ func (c Attribute) Values(ctx context.Context, req *ValuesRequest) (*ValuesRespo
 		return nil, nil, errors.Wrap(err, "ValuesRequest.NewRequest")
 	}
 
-	return common.Send[ValuesResponse](c.h, r, common.ContentTypeApplicationJson)
+	return request.Send[ValuesResponse](c.h, r, request.ContentTypeApplicationJson)
 }

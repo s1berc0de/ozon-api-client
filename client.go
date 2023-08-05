@@ -1,9 +1,9 @@
 package core
 
 import (
-	"github.com/diphantxm/ozon-api-client/auth"
-	"github.com/diphantxm/ozon-api-client/logger"
-	"github.com/diphantxm/ozon-api-client/ozon/category"
+	"github.com/diphantxm/ozon-api-client/internal/auth"
+	"github.com/diphantxm/ozon-api-client/internal/logger"
+	"github.com/diphantxm/ozon-api-client/internal/ozon/category"
 	"github.com/pkg/errors"
 	"net/http"
 	"strings"

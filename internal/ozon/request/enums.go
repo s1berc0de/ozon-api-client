@@ -1,4 +1,4 @@
-package common
+package request
 
 //go:generate go-enum -f=$GOFILE --marshal --names
 

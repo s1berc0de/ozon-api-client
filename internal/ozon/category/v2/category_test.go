@@ -3,9 +3,9 @@ package v2_test
 import (
 	"bytes"
 	"context"
-	"github.com/diphantxm/ozon-api-client/auth"
-	v2 "github.com/diphantxm/ozon-api-client/ozon/category/v2"
-	"github.com/diphantxm/ozon-api-client/test"
+	"github.com/diphantxm/ozon-api-client/internal/auth"
+	v22 "github.com/diphantxm/ozon-api-client/internal/ozon/category/v2"
+	"github.com/diphantxm/ozon-api-client/internal/test"
 	"github.com/stretchr/testify/require"
 	"io"
 	"net/http"
@@ -13,7 +13,7 @@ import (
 )
 
 func TestTree_Success(t *testing.T) {
-	c := v2.New(
+	c := v22.New(
 		test.NewTestClient(
 			auth.NewRoundTripper(
 				test.RoundTripFunc(func(req *http.Request) *http.Response {
@@ -41,17 +41,17 @@ func TestTree_Success(t *testing.T) {
 	)
 	require.NotNil(t, c)
 
-	resp, httpResp, err := c.Tree(context.Background(), &v2.TreeRequest{
+	resp, httpResp, err := c.Tree(context.Background(), &v22.TreeRequest{
 		CategoryId: 17034410,
 	})
 	require.Nil(t, err)
 	require.NotNil(t, httpResp)
 	require.Equal(t, httpResp.StatusCode, http.StatusOK)
-	require.EqualValues(t, &v2.TreeResponse{
-		Result: []v2.TreeResponseResult{
+	require.EqualValues(t, &v22.TreeResponse{
+		Result: []v22.TreeResponseResult{
 			{
 				CategoryId: 17034410,
-				Children:   make([]v2.TreeResponseResult, 0),
+				Children:   make([]v22.TreeResponseResult, 0),
 				Title:      "Развивающие игрушки",
 			},
 		},

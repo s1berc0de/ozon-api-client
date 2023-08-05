@@ -1,8 +1,8 @@
 package category
 
 import (
-	v2 "github.com/diphantxm/ozon-api-client/ozon/category/v2"
-	v3 "github.com/diphantxm/ozon-api-client/ozon/category/v3"
+	"github.com/diphantxm/ozon-api-client/internal/ozon/category/v2"
+	"github.com/diphantxm/ozon-api-client/internal/ozon/category/v3"
 	"net/http"
 )
 
