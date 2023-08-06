@@ -1,7 +1,13 @@
 package test
 
 import (
+	"fmt"
+	"io"
 	"net/http"
+	"testing"
+	"time"
+
+	"github.com/stretchr/testify/require"
 )
 
 const (
@@ -24,4 +30,22 @@ func NewTestClient(fn http.RoundTripper) *http.Client {
 	return &http.Client{
 		Transport: fn,
 	}
+}
+
+func FullURL(r *http.Request) string {
+	return fmt.Sprintf("%s://%s%s", r.URL.Scheme, r.URL.Host, r.URL.Path)
+}
+
+func Body(t *testing.T, r *http.Request) string {
+	body, err := io.ReadAll(r.Body)
+	require.Nil(t, err)
+
+	return string(body)
+}
+
+func TimeFromString(t *testing.T, format, datetime string) time.Time {
+	dt, err := time.Parse(format, datetime)
+	require.Nil(t, err)
+
+	return dt
 }

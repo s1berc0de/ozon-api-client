@@ -1,13 +1,17 @@
 package core
 
 import (
-	"github.com/diphantxm/ozon-api-client/internal/auth"
-	"github.com/diphantxm/ozon-api-client/internal/logger"
-	"github.com/diphantxm/ozon-api-client/internal/ozon/category"
-	"github.com/pkg/errors"
 	"net/http"
 	"strings"
 	"time"
+
+	"github.com/diphantxm/ozon-api-client/ozon/products"
+
+	"github.com/diphantxm/ozon-api-client/internal/auth"
+	"github.com/diphantxm/ozon-api-client/internal/logger"
+	"github.com/diphantxm/ozon-api-client/ozon/category"
+	"github.com/diphantxm/ozon-api-client/ozon/product"
+	"github.com/pkg/errors"
 )
 
 const (
@@ -102,13 +106,25 @@ func NewClient(opts ...Opts) (*Client, error) {
 
 	return &Client{
 		category: category.New(c.h, c.uri),
+		product:  product.New(c.h, c.uri),
+		products: products.New(c.h, c.uri),
 	}, nil
 }
 
 type Client struct {
 	category *category.Category
+	product  *product.Product
+	products *products.Products
 }
 
 func (c Client) Category() *category.Category {
 	return c.category
+}
+
+func (c Client) Product() *product.Product {
+	return c.product
+}
+
+func (c Client) Products() *products.Products {
+	return c.products
 }
