@@ -31,7 +31,7 @@ func (c Pictures) Import(ctx context.Context, req *ImportRequest) (*ImportRespon
 		return nil, nil, errors.Wrap(err, "ImportRequest.Marshal")
 	}
 
-	r, err := http.NewRequestWithContext(ctx, http.MethodPost, c.uri+"/update", bytes.NewReader(b))
+	r, err := http.NewRequestWithContext(ctx, http.MethodPost, c.uri+"/import", bytes.NewReader(b))
 	if err != nil {
 		return nil, nil, errors.Wrap(err, "ImportRequest.NewRequest")
 	}

@@ -42,5 +42,5 @@ type InfoResponseResult struct {
 }
 
 type InfoResponse struct {
-	ProductID []string `json:"product_id"`
+	Result InfoResponseResult `json:"result"`
 }

@@ -3,9 +3,9 @@ package info
 import "time"
 
 type ListRequest struct {
-	OfferID   []string
-	ProductID []int64
-	SKU       []int64
+	OfferID   []string `json:"offer_id"`
+	ProductID []int64  `json:"product_id"`
+	SKU       []int64  `json:"sku"`
 }
 
 type ListResponseResultItemDiscountedStock struct {
@@ -87,10 +87,10 @@ type ListResponseResultItemVisibilityDetailsReason struct {
 }
 
 type ListResponseResultItemVisibilityDetails struct {
-	ActiveProduct bool                                          `json:"active_product"`
-	HasPrice      bool                                          `json:"has_price"`
-	HasStock      bool                                          `json:"has_stock"`
-	Reasons       ListResponseResultItemVisibilityDetailsReason `json:"reasons"`
+	ActiveProduct bool                                            `json:"active_product"`
+	HasPrice      bool                                            `json:"has_price"`
+	HasStock      bool                                            `json:"has_stock"`
+	Reasons       []ListResponseResultItemVisibilityDetailsReason `json:"reasons"`
 }
 
 type ListResponseResultItem struct {
@@ -133,7 +133,7 @@ type ListResponseResultItem struct {
 }
 
 type ListResponseResult struct {
-	Items ListResponseResultItem `json:"items"`
+	Items []ListResponseResultItem `json:"items"`
 }
 
 type ListResponse struct {
