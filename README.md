@@ -106,7 +106,7 @@ Or you can implement them and contribute to the project. Contribution to the pro
 11. /v2/product/info ✅
 12. /v1/product/rating-by-sku ✅
 13. /v2/product/info/list ✅
-14. /v3/products/info/attributes
+14. /v3/products/info/attributes ✅
 15. /v1/product/info/description
 16. /v4/product/info/limit
 17. /v1/product/update/offer-id
