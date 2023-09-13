@@ -80,3 +80,228 @@ func (x *InfoResponseResultItemStatus) UnmarshalText(text []byte) error {
 	*x = tmp
 	return nil
 }
+
+const (
+	// PricesRequestPriceAutoActionEnabledUNKNOWN is a PricesRequestPriceAutoActionEnabled of type UNKNOWN.
+	PricesRequestPriceAutoActionEnabledUNKNOWN PricesRequestPriceAutoActionEnabled = iota
+	// PricesRequestPriceAutoActionEnabledENABLED is a PricesRequestPriceAutoActionEnabled of type ENABLED.
+	PricesRequestPriceAutoActionEnabledENABLED
+	// PricesRequestPriceAutoActionEnabledDISABLED is a PricesRequestPriceAutoActionEnabled of type DISABLED.
+	PricesRequestPriceAutoActionEnabledDISABLED
+)
+
+var ErrInvalidPricesRequestPriceAutoActionEnabled = fmt.Errorf("not a valid PricesRequestPriceAutoActionEnabled, try [%s]", strings.Join(_PricesRequestPriceAutoActionEnabledNames, ", "))
+
+const _PricesRequestPriceAutoActionEnabledName = "UNKNOWNENABLEDDISABLED"
+
+var _PricesRequestPriceAutoActionEnabledNames = []string{
+	_PricesRequestPriceAutoActionEnabledName[0:7],
+	_PricesRequestPriceAutoActionEnabledName[7:14],
+	_PricesRequestPriceAutoActionEnabledName[14:22],
+}
+
+// PricesRequestPriceAutoActionEnabledNames returns a list of possible string values of PricesRequestPriceAutoActionEnabled.
+func PricesRequestPriceAutoActionEnabledNames() []string {
+	tmp := make([]string, len(_PricesRequestPriceAutoActionEnabledNames))
+	copy(tmp, _PricesRequestPriceAutoActionEnabledNames)
+	return tmp
+}
+
+var _PricesRequestPriceAutoActionEnabledMap = map[PricesRequestPriceAutoActionEnabled]string{
+	PricesRequestPriceAutoActionEnabledUNKNOWN:  _PricesRequestPriceAutoActionEnabledName[0:7],
+	PricesRequestPriceAutoActionEnabledENABLED:  _PricesRequestPriceAutoActionEnabledName[7:14],
+	PricesRequestPriceAutoActionEnabledDISABLED: _PricesRequestPriceAutoActionEnabledName[14:22],
+}
+
+// String implements the Stringer interface.
+func (x PricesRequestPriceAutoActionEnabled) String() string {
+	if str, ok := _PricesRequestPriceAutoActionEnabledMap[x]; ok {
+		return str
+	}
+	return fmt.Sprintf("PricesRequestPriceAutoActionEnabled(%d)", x)
+}
+
+var _PricesRequestPriceAutoActionEnabledValue = map[string]PricesRequestPriceAutoActionEnabled{
+	_PricesRequestPriceAutoActionEnabledName[0:7]:   PricesRequestPriceAutoActionEnabledUNKNOWN,
+	_PricesRequestPriceAutoActionEnabledName[7:14]:  PricesRequestPriceAutoActionEnabledENABLED,
+	_PricesRequestPriceAutoActionEnabledName[14:22]: PricesRequestPriceAutoActionEnabledDISABLED,
+}
+
+// ParsePricesRequestPriceAutoActionEnabled attempts to convert a string to a PricesRequestPriceAutoActionEnabled.
+func ParsePricesRequestPriceAutoActionEnabled(name string) (PricesRequestPriceAutoActionEnabled, error) {
+	if x, ok := _PricesRequestPriceAutoActionEnabledValue[name]; ok {
+		return x, nil
+	}
+	return PricesRequestPriceAutoActionEnabled(0), fmt.Errorf("%s is %w", name, ErrInvalidPricesRequestPriceAutoActionEnabled)
+}
+
+// MarshalText implements the text marshaller method.
+func (x PricesRequestPriceAutoActionEnabled) MarshalText() ([]byte, error) {
+	return []byte(x.String()), nil
+}
+
+// UnmarshalText implements the text unmarshaller method.
+func (x *PricesRequestPriceAutoActionEnabled) UnmarshalText(text []byte) error {
+	name := string(text)
+	tmp, err := ParsePricesRequestPriceAutoActionEnabled(name)
+	if err != nil {
+		return err
+	}
+	*x = tmp
+	return nil
+}
+
+const (
+	// PricesRequestPriceCurrencyCodeRUB is a PricesRequestPriceCurrencyCode of type RUB.
+	PricesRequestPriceCurrencyCodeRUB PricesRequestPriceCurrencyCode = iota
+	// PricesRequestPriceCurrencyCodeBYN is a PricesRequestPriceCurrencyCode of type BYN.
+	PricesRequestPriceCurrencyCodeBYN
+	// PricesRequestPriceCurrencyCodeKZT is a PricesRequestPriceCurrencyCode of type KZT.
+	PricesRequestPriceCurrencyCodeKZT
+	// PricesRequestPriceCurrencyCodeEUR is a PricesRequestPriceCurrencyCode of type EUR.
+	PricesRequestPriceCurrencyCodeEUR
+	// PricesRequestPriceCurrencyCodeUSD is a PricesRequestPriceCurrencyCode of type USD.
+	PricesRequestPriceCurrencyCodeUSD
+	// PricesRequestPriceCurrencyCodeCNY is a PricesRequestPriceCurrencyCode of type CNY.
+	PricesRequestPriceCurrencyCodeCNY
+)
+
+var ErrInvalidPricesRequestPriceCurrencyCode = fmt.Errorf("not a valid PricesRequestPriceCurrencyCode, try [%s]", strings.Join(_PricesRequestPriceCurrencyCodeNames, ", "))
+
+const _PricesRequestPriceCurrencyCodeName = "RUBBYNKZTEURUSDCNY"
+
+var _PricesRequestPriceCurrencyCodeNames = []string{
+	_PricesRequestPriceCurrencyCodeName[0:3],
+	_PricesRequestPriceCurrencyCodeName[3:6],
+	_PricesRequestPriceCurrencyCodeName[6:9],
+	_PricesRequestPriceCurrencyCodeName[9:12],
+	_PricesRequestPriceCurrencyCodeName[12:15],
+	_PricesRequestPriceCurrencyCodeName[15:18],
+}
+
+// PricesRequestPriceCurrencyCodeNames returns a list of possible string values of PricesRequestPriceCurrencyCode.
+func PricesRequestPriceCurrencyCodeNames() []string {
+	tmp := make([]string, len(_PricesRequestPriceCurrencyCodeNames))
+	copy(tmp, _PricesRequestPriceCurrencyCodeNames)
+	return tmp
+}
+
+var _PricesRequestPriceCurrencyCodeMap = map[PricesRequestPriceCurrencyCode]string{
+	PricesRequestPriceCurrencyCodeRUB: _PricesRequestPriceCurrencyCodeName[0:3],
+	PricesRequestPriceCurrencyCodeBYN: _PricesRequestPriceCurrencyCodeName[3:6],
+	PricesRequestPriceCurrencyCodeKZT: _PricesRequestPriceCurrencyCodeName[6:9],
+	PricesRequestPriceCurrencyCodeEUR: _PricesRequestPriceCurrencyCodeName[9:12],
+	PricesRequestPriceCurrencyCodeUSD: _PricesRequestPriceCurrencyCodeName[12:15],
+	PricesRequestPriceCurrencyCodeCNY: _PricesRequestPriceCurrencyCodeName[15:18],
+}
+
+// String implements the Stringer interface.
+func (x PricesRequestPriceCurrencyCode) String() string {
+	if str, ok := _PricesRequestPriceCurrencyCodeMap[x]; ok {
+		return str
+	}
+	return fmt.Sprintf("PricesRequestPriceCurrencyCode(%d)", x)
+}
+
+var _PricesRequestPriceCurrencyCodeValue = map[string]PricesRequestPriceCurrencyCode{
+	_PricesRequestPriceCurrencyCodeName[0:3]:   PricesRequestPriceCurrencyCodeRUB,
+	_PricesRequestPriceCurrencyCodeName[3:6]:   PricesRequestPriceCurrencyCodeBYN,
+	_PricesRequestPriceCurrencyCodeName[6:9]:   PricesRequestPriceCurrencyCodeKZT,
+	_PricesRequestPriceCurrencyCodeName[9:12]:  PricesRequestPriceCurrencyCodeEUR,
+	_PricesRequestPriceCurrencyCodeName[12:15]: PricesRequestPriceCurrencyCodeUSD,
+	_PricesRequestPriceCurrencyCodeName[15:18]: PricesRequestPriceCurrencyCodeCNY,
+}
+
+// ParsePricesRequestPriceCurrencyCode attempts to convert a string to a PricesRequestPriceCurrencyCode.
+func ParsePricesRequestPriceCurrencyCode(name string) (PricesRequestPriceCurrencyCode, error) {
+	if x, ok := _PricesRequestPriceCurrencyCodeValue[name]; ok {
+		return x, nil
+	}
+	return PricesRequestPriceCurrencyCode(0), fmt.Errorf("%s is %w", name, ErrInvalidPricesRequestPriceCurrencyCode)
+}
+
+// MarshalText implements the text marshaller method.
+func (x PricesRequestPriceCurrencyCode) MarshalText() ([]byte, error) {
+	return []byte(x.String()), nil
+}
+
+// UnmarshalText implements the text unmarshaller method.
+func (x *PricesRequestPriceCurrencyCode) UnmarshalText(text []byte) error {
+	name := string(text)
+	tmp, err := ParsePricesRequestPriceCurrencyCode(name)
+	if err != nil {
+		return err
+	}
+	*x = tmp
+	return nil
+}
+
+const (
+	// PricesRequestPricePriceStrategyEnabledUNKNOWN is a PricesRequestPricePriceStrategyEnabled of type UNKNOWN.
+	PricesRequestPricePriceStrategyEnabledUNKNOWN PricesRequestPricePriceStrategyEnabled = iota
+	// PricesRequestPricePriceStrategyEnabledENABLED is a PricesRequestPricePriceStrategyEnabled of type ENABLED.
+	PricesRequestPricePriceStrategyEnabledENABLED
+	// PricesRequestPricePriceStrategyEnabledDISABLED is a PricesRequestPricePriceStrategyEnabled of type DISABLED.
+	PricesRequestPricePriceStrategyEnabledDISABLED
+)
+
+var ErrInvalidPricesRequestPricePriceStrategyEnabled = fmt.Errorf("not a valid PricesRequestPricePriceStrategyEnabled, try [%s]", strings.Join(_PricesRequestPricePriceStrategyEnabledNames, ", "))
+
+const _PricesRequestPricePriceStrategyEnabledName = "UNKNOWNENABLEDDISABLED"
+
+var _PricesRequestPricePriceStrategyEnabledNames = []string{
+	_PricesRequestPricePriceStrategyEnabledName[0:7],
+	_PricesRequestPricePriceStrategyEnabledName[7:14],
+	_PricesRequestPricePriceStrategyEnabledName[14:22],
+}
+
+// PricesRequestPricePriceStrategyEnabledNames returns a list of possible string values of PricesRequestPricePriceStrategyEnabled.
+func PricesRequestPricePriceStrategyEnabledNames() []string {
+	tmp := make([]string, len(_PricesRequestPricePriceStrategyEnabledNames))
+	copy(tmp, _PricesRequestPricePriceStrategyEnabledNames)
+	return tmp
+}
+
+var _PricesRequestPricePriceStrategyEnabledMap = map[PricesRequestPricePriceStrategyEnabled]string{
+	PricesRequestPricePriceStrategyEnabledUNKNOWN:  _PricesRequestPricePriceStrategyEnabledName[0:7],
+	PricesRequestPricePriceStrategyEnabledENABLED:  _PricesRequestPricePriceStrategyEnabledName[7:14],
+	PricesRequestPricePriceStrategyEnabledDISABLED: _PricesRequestPricePriceStrategyEnabledName[14:22],
+}
+
+// String implements the Stringer interface.
+func (x PricesRequestPricePriceStrategyEnabled) String() string {
+	if str, ok := _PricesRequestPricePriceStrategyEnabledMap[x]; ok {
+		return str
+	}
+	return fmt.Sprintf("PricesRequestPricePriceStrategyEnabled(%d)", x)
+}
+
+var _PricesRequestPricePriceStrategyEnabledValue = map[string]PricesRequestPricePriceStrategyEnabled{
+	_PricesRequestPricePriceStrategyEnabledName[0:7]:   PricesRequestPricePriceStrategyEnabledUNKNOWN,
+	_PricesRequestPricePriceStrategyEnabledName[7:14]:  PricesRequestPricePriceStrategyEnabledENABLED,
+	_PricesRequestPricePriceStrategyEnabledName[14:22]: PricesRequestPricePriceStrategyEnabledDISABLED,
+}
+
+// ParsePricesRequestPricePriceStrategyEnabled attempts to convert a string to a PricesRequestPricePriceStrategyEnabled.
+func ParsePricesRequestPricePriceStrategyEnabled(name string) (PricesRequestPricePriceStrategyEnabled, error) {
+	if x, ok := _PricesRequestPricePriceStrategyEnabledValue[name]; ok {
+		return x, nil
+	}
+	return PricesRequestPricePriceStrategyEnabled(0), fmt.Errorf("%s is %w", name, ErrInvalidPricesRequestPricePriceStrategyEnabled)
+}
+
+// MarshalText implements the text marshaller method.
+func (x PricesRequestPricePriceStrategyEnabled) MarshalText() ([]byte, error) {
+	return []byte(x.String()), nil
+}
+
+// UnmarshalText implements the text unmarshaller method.
+func (x *PricesRequestPricePriceStrategyEnabled) UnmarshalText(text []byte) error {
+	name := string(text)
+	tmp, err := ParsePricesRequestPricePriceStrategyEnabled(name)
+	if err != nil {
+		return err
+	}
+	*x = tmp
+	return nil
+}

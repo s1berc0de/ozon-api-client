@@ -1,0 +1,15 @@
+package info
+
+//go:generate go-enum -f=$GOFILE --marshal --names
+
+// PricesRequestFilterVisibility
+// ENUM(ALL=0, VISIBLE, INVISIBLE, EMPTY_STOCK, NOT_MODERATED, MODERATED, DISABLED, STATE_FAILED, READY_TO_SUPPLY, VALIDATION_STATE_PENDING, VALIDATION_STATE_FAIL, VALIDATION_STATE_SUCCESS, TO_SUPPLY, IN_SALE, REMOVED_FROM_SALE, BANNED, OVERPRICED, CRITICALLY_OVERPRICED, EMPTY_BARCODE, BARCODE_EXISTS, QUARANTINE, ARCHIVED, OVERPRICED_WITH_STOCK, PARTIAL_APPROVED, IMAGE_ABSENT, MODERATION_BLOCK)
+type PricesRequestFilterVisibility int32
+
+// PricesResponseResultItemPriceCurrencyCode
+// ENUM(RUB=1, BYN, KZT, EUR, USD, CNY)
+type PricesResponseResultItemPriceCurrencyCode int32
+
+// PricesResponseResultItemPriceIndexesPriceIndex
+// ENUM(WITHOUT_INDEX=1, PROFIT, AVG_PROFIT, NON_PROFIT)
+type PricesResponseResultItemPriceIndexesPriceIndex int32

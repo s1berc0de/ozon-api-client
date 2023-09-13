@@ -35,3 +35,60 @@ type InfoResponseResult struct {
 type InfoResponse struct {
 	Result InfoResponseResult `json:"result"`
 }
+
+type StocksRequestStock struct {
+	OfferID   string `json:"offer_id"`
+	ProductID int64  `json:"product_id"`
+	Stock     int64  `json:"stock"`
+}
+
+type StocksRequest struct {
+	Stocks []StocksRequestStock `json:"stocks"`
+}
+
+type StocksResponseResultError struct {
+	Code    string `json:"code"`
+	Message string `json:"message"`
+}
+
+type StocksResponseResult struct {
+	Errors    []StocksResponseResultError `json:"errors"`
+	OfferID   string                      `json:"offer_id"`
+	ProductID int64                       `json:"product_id"`
+	Updated   bool                        `json:"updated"`
+}
+
+type StocksResponse struct {
+	Result []StocksResponseResult
+}
+
+type PricesRequestPrice struct {
+	AutoActionEnabled    PricesRequestPriceAutoActionEnabled    `json:"auto_action_enabled"`
+	CurrencyCode         PricesRequestPriceCurrencyCode         `json:"currency_code"`
+	MinPrice             string                                 `json:"min_price"`
+	OfferID              string                                 `json:"offer_id"`
+	OldPrice             string                                 `json:"old_price"`
+	Price                string                                 `json:"price"`
+	PriceStrategyEnabled PricesRequestPricePriceStrategyEnabled `json:"price_strategy_enabled"`
+	ProductID            int64                                  `json:"product_id"`
+}
+
+type PricesRequest struct {
+	Prices []PricesRequestPrice `json:"prices"`
+}
+
+type PricesResponseResultError struct {
+	Code    string `json:"code"`
+	Message string `json:"message"`
+}
+
+type PricesResponseResult struct {
+	Errors    []PricesResponseResultError `json:"errors"`
+	OfferID   string                      `json:"offer_id"`
+	ProductID int64                       `json:"product_id"`
+	Updated   bool                        `json:"updated"`
+}
+
+type PricesResponse struct {
+	Result []PricesResponseResult `json:"result"`
+}

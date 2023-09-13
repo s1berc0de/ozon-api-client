@@ -6,9 +6,19 @@ import (
 	"encoding/json"
 	"net/http"
 
+	"github.com/diphantxm/ozon-api-client/ozon/product/v1/info/stocksbywarehouse"
+
 	"github.com/diphantxm/ozon-api-client/internal/request"
 	"github.com/pkg/errors"
 )
+
+type SubRoutes struct {
+	stocksByWarehouse *stocksbywarehouse.StocksByWarehouse
+}
+
+func (c SubRoutes) StocksByWarehouse() *stocksbywarehouse.StocksByWarehouse {
+	return c.stocksByWarehouse
+}
 
 func New(
 	h *http.Client,
@@ -17,23 +27,28 @@ func New(
 	return &Info{
 		h:   h,
 		uri: uri,
+		subRoutes: &SubRoutes{
+			stocksByWarehouse: stocksbywarehouse.New(h, uri+"/stocks-by-warehouse"),
+		},
 	}
 }
 
 type Info struct {
 	h   *http.Client
 	uri string
+
+	subRoutes *SubRoutes
 }
 
 func (c Info) Description(ctx context.Context, req *DescriptionRequest) (*DescriptionResponse, *http.Response, error) {
 	b, err := json.Marshal(req)
 	if err != nil {
-		return nil, nil, errors.Wrap(err, "InfoRequest.Marshal")
+		return nil, nil, errors.Wrap(err, "DescriptionRequest.Marshal")
 	}
 
 	r, err := http.NewRequestWithContext(ctx, http.MethodPost, c.uri+"/description", bytes.NewReader(b))
 	if err != nil {
-		return nil, nil, errors.Wrap(err, "InfoRequest.NewRequest")
+		return nil, nil, errors.Wrap(err, "DescriptionRequest.NewRequest")
 	}
 
 	return request.Send[DescriptionResponse](c.h, r, request.ContentTypeApplicationJson)
