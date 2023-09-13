@@ -15,5 +15,5 @@ type DeleteResponseStatus struct {
 }
 
 type DeleteResponse struct {
-	Status DeleteResponseStatus `json:"status"`
+	Status []DeleteResponseStatus `json:"status"`
 }

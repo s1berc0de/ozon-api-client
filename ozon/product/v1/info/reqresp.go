@@ -22,7 +22,7 @@ type SubscriptionRequest struct {
 
 type SubscriptionResponseResult struct {
 	Count int64 `json:"count"`
-	Sku   int64 `json:"sku"`
+	SKU   int64 `json:"sku"`
 }
 
 type SubscriptionResponse struct {

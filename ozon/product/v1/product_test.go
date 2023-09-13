@@ -468,3 +468,122 @@ func TestRatingBySKU_Success(t *testing.T) {
 		},
 	}, resp)
 }
+
+func TestArchive_Success(t *testing.T) {
+	c := v1.New(
+		test.NewTestClient(
+			auth.NewRoundTripper(
+				test.RoundTripFunc(func(r *http.Request) *http.Response {
+					require.Equal(t, "https://api-seller.ozon.ru/v1/product/archive", test.FullURL(r))
+					require.Equal(t, test.ApiKey, r.Header.Get(auth.APIKeyHeader))
+					require.Equal(t, test.ClientID, r.Header.Get(auth.ClientIDHeader))
+					require.Equal(t, `{"product_id":["125529926"]}`, test.Body(t, r))
+
+					return &http.Response{
+						StatusCode: http.StatusOK,
+						Body: io.NopCloser(bytes.NewBufferString(`{
+							"result": true
+						}`)),
+					}
+				}),
+				test.ClientID,
+				test.ApiKey,
+			),
+		),
+		"https://api-seller.ozon.ru/v1/product",
+	)
+	require.NotNil(t, c)
+
+	resp, httpResp, err := c.Archive(context.Background(), &v1.ArchiveRequest{
+		ProductID: []string{
+			"125529926",
+		},
+	})
+	require.Nil(t, err)
+	require.NotNil(t, httpResp)
+	require.Equal(t, httpResp.StatusCode, http.StatusOK)
+	require.EqualValues(t, &v1.ArchiveResponse{
+		Result: true,
+	}, resp)
+}
+
+func TestUnArchive_Success(t *testing.T) {
+	c := v1.New(
+		test.NewTestClient(
+			auth.NewRoundTripper(
+				test.RoundTripFunc(func(r *http.Request) *http.Response {
+					require.Equal(t, "https://api-seller.ozon.ru/v1/product/unarchive", test.FullURL(r))
+					require.Equal(t, test.ApiKey, r.Header.Get(auth.APIKeyHeader))
+					require.Equal(t, test.ClientID, r.Header.Get(auth.ClientIDHeader))
+					require.Equal(t, `{"product_id":["125529926"]}`, test.Body(t, r))
+
+					return &http.Response{
+						StatusCode: http.StatusOK,
+						Body: io.NopCloser(bytes.NewBufferString(`{
+							"result": true
+						}`)),
+					}
+				}),
+				test.ClientID,
+				test.ApiKey,
+			),
+		),
+		"https://api-seller.ozon.ru/v1/product",
+	)
+	require.NotNil(t, c)
+
+	resp, httpResp, err := c.UnArchive(context.Background(), &v1.UnArchiveRequest{
+		ProductID: []string{
+			"125529926",
+		},
+	})
+	require.Nil(t, err)
+	require.NotNil(t, httpResp)
+	require.Equal(t, httpResp.StatusCode, http.StatusOK)
+	require.EqualValues(t, &v1.ArchiveResponse{
+		Result: true,
+	}, resp)
+}
+
+func TestUploadDigitalCodes_Success(t *testing.T) {
+	c := v1.New(
+		test.NewTestClient(
+			auth.NewRoundTripper(
+				test.RoundTripFunc(func(r *http.Request) *http.Response {
+					require.Equal(t, "https://api-seller.ozon.ru/v1/product/upload_digital_codes", test.FullURL(r))
+					require.Equal(t, test.ApiKey, r.Header.Get(auth.APIKeyHeader))
+					require.Equal(t, test.ClientID, r.Header.Get(auth.ClientIDHeader))
+					require.Equal(t, `{"digital_codes":["764282654334"],"product_id":73160317}`, test.Body(t, r))
+
+					return &http.Response{
+						StatusCode: http.StatusOK,
+						Body: io.NopCloser(bytes.NewBufferString(`{
+							"result": {
+								"task_id": 172549811
+							}
+						}`)),
+					}
+				}),
+				test.ClientID,
+				test.ApiKey,
+			),
+		),
+		"https://api-seller.ozon.ru/v1/product",
+	)
+	require.NotNil(t, c)
+
+	resp, httpResp, err := c.UploadDigitalCodes(context.Background(), &v1.UploadDigitalCodesRequest{
+		DigitalCodes: []string{
+			"764282654334",
+		},
+		ProductID: 73160317,
+	})
+	require.Nil(t, err)
+	require.NotNil(t, httpResp)
+	require.Equal(t, httpResp.StatusCode, http.StatusOK)
+	require.EqualValues(t, &v1.UploadDigitalCodesResponse{
+		Result: v1.UploadDigitalCodesResponseResult{
+			TaskID: 172549811,
+		},
+	}, resp)
+}

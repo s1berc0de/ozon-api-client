@@ -61,7 +61,7 @@ type RatingBySKUResponse struct {
 }
 
 type ArchiveRequest struct {
-	ProductID []int64 `json:"product_id"`
+	ProductID []string `json:"product_id"`
 }
 
 type ArchiveResponse struct {
@@ -69,7 +69,7 @@ type ArchiveResponse struct {
 }
 
 type UnArchiveRequest struct {
-	ProductID []int64 `json:"product_id"`
+	ProductID []string `json:"product_id"`
 }
 
 type UnArchiveResponse struct {

@@ -1,7 +1,7 @@
 package v1
 
 type GEORestrictionsCatalogByFilterRequestFilter struct {
-	Names       []string `json:"names"`
+	Names       []string `json:"names,omitempty"`
 	OnlyVisible bool     `json:"only_visible"`
 }
 
