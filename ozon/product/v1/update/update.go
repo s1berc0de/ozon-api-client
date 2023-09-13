@@ -38,3 +38,17 @@ func (c Update) OfferID(ctx context.Context, req *OfferIDRequest) (*OfferIDRespo
 
 	return request.Send[OfferIDResponse](c.h, r, request.ContentTypeApplicationJson)
 }
+
+func (c Update) Discount(ctx context.Context, req *DiscountRequest) (*DiscountResponse, *http.Response, error) {
+	b, err := json.Marshal(req)
+	if err != nil {
+		return nil, nil, errors.Wrap(err, "DiscountRequest.Marshal")
+	}
+
+	r, err := http.NewRequestWithContext(ctx, http.MethodPost, c.uri+"/discount", bytes.NewReader(b))
+	if err != nil {
+		return nil, nil, errors.Wrap(err, "DiscountRequest.NewRequest")
+	}
+
+	return request.Send[DiscountResponse](c.h, r, request.ContentTypeApplicationJson)
+}

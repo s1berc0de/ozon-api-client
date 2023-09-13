@@ -126,5 +126,5 @@ Or you can implement them and contribute to the project. Contribution to the pro
 4. /v1/product/info/stocks-by-warehouse/fbs ✅
 5. /v1/product/import/prices ✅
 6. /v4/product/info/prices ✅
-7. /v1/product/info/discounted
-8. /v1/product/update/discount
+7. /v1/product/info/discounted ✅
+8. /v1/product/update/discount ✅

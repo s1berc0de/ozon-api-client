@@ -107,3 +107,73 @@ func TestSubscription_Success(t *testing.T) {
 		},
 	}, resp)
 }
+
+func TestDiscounted_Success(t *testing.T) {
+	c := info.New(
+		test.NewTestClient(
+			auth.NewRoundTripper(
+				test.RoundTripFunc(func(r *http.Request) *http.Response {
+					require.Equal(t, "https://api-seller.ozon.ru/v1/product/info/discounted", test.FullURL(r))
+					require.Equal(t, test.ApiKey, r.Header.Get(auth.APIKeyHeader))
+					require.Equal(t, test.ClientID, r.Header.Get(auth.ClientIDHeader))
+					require.Equal(t, `{"discounted_skus":["635548518"]}`, test.Body(t, r))
+
+					return &http.Response{
+						StatusCode: http.StatusOK,
+						Body: io.NopCloser(bytes.NewBufferString(`{
+							"items": [
+								{
+									"discounted_sku": 635548518,
+									"sku": 320067758,
+									"condition_estimation": "4",
+									"packaging_violation": "",
+									"warranty_type": "",
+									"reason_damaged": "Механическое повреждение",
+									"comment_reason_damaged": "повреждена заводская упаковка",
+									"defects": "",
+									"mechanical_damage": "",
+									"package_damage": "",
+									"shortage": "",
+									"repair": "",
+									"condition": ""
+								}
+							]
+						}`)),
+					}
+				}),
+				test.ClientID,
+				test.ApiKey,
+			),
+		),
+		"https://api-seller.ozon.ru/v1/product/info",
+	)
+	require.NotNil(t, c)
+
+	resp, httpResp, err := c.Discounted(context.Background(), &info.DiscountedRequest{
+		DiscountedSKUs: []string{
+			"635548518",
+		},
+	})
+	require.Nil(t, err)
+	require.NotNil(t, httpResp)
+	require.Equal(t, httpResp.StatusCode, http.StatusOK)
+	require.EqualValues(t, &info.DiscountedResponse{
+		Items: []info.DiscountedResponseItem{
+			{
+				DiscountedSKU:        635548518,
+				SKU:                  320067758,
+				ConditionEstimation:  "4",
+				PackagingViolation:   "",
+				WarrantyType:         "",
+				ReasonDamaged:        "Механическое повреждение",
+				CommentReasonDamaged: "повреждена заводская упаковка",
+				Defects:              "",
+				MechanicalDamage:     "",
+				PackageDamage:        "",
+				Shortage:             "",
+				Repair:               "",
+				Condition:            "",
+			},
+		},
+	}, resp)
+}

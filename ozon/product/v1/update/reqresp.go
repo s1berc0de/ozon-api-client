@@ -17,3 +17,12 @@ type OfferIDResponseError struct {
 type OfferIDResponse struct {
 	Errors []OfferIDResponseError `json:"errors"`
 }
+
+type DiscountRequest struct {
+	Discount  int32 `json:"discount"`
+	ProductID int64 `json:"product_id"`
+}
+
+type DiscountResponse struct {
+	Result bool `json:"result"`
+}

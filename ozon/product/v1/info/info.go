@@ -67,3 +67,17 @@ func (c Info) Subscription(ctx context.Context, req *SubscriptionRequest) (*Subs
 
 	return request.Send[SubscriptionResponse](c.h, r, request.ContentTypeApplicationJson)
 }
+
+func (c Info) Discounted(ctx context.Context, req *DiscountedRequest) (*DiscountedResponse, *http.Response, error) {
+	b, err := json.Marshal(req)
+	if err != nil {
+		return nil, nil, errors.Wrap(err, "DiscountedRequest.Marshal")
+	}
+
+	r, err := http.NewRequestWithContext(ctx, http.MethodPost, c.uri+"/discounted", bytes.NewReader(b))
+	if err != nil {
+		return nil, nil, errors.Wrap(err, "DiscountedRequest.NewRequest")
+	}
+
+	return request.Send[DiscountedResponse](c.h, r, request.ContentTypeApplicationJson)
+}
