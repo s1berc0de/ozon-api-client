@@ -172,7 +172,7 @@ Or you can implement them and contribute to the project. Contribution to the pro
 13. /v1/product/certificate/rejection_reasons/list
 14. /v1/product/certificate/status/list
 ### Склады
-1. /v1/warehouse/list
+1. /v1/warehouse/list ✅
 2. /v1/delivery-method/list
 ### Полигоны
 1. /v1/polygon/create
@@ -270,5 +270,5 @@ Or you can implement them and contribute to the project. Contribution to the pro
 2. /v3/finance/transaction/list
 3. /v3/finance/transaction/totals
 ### Рейтинг продавца
-1. /v1/rating/summary
-2. /v1/rating/history
+1. /v1/rating/summary ✅
+2. /v1/rating/history ✅
