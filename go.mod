@@ -1,4 +1,4 @@
-module github.com/diphantxm/ozon-api-client
+module github.com/s1berc0de/ozon-api-client
 
 go 1.18
 
