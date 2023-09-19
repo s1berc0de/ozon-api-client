@@ -13,7 +13,6 @@ import (
 
 	"github.com/pkg/errors"
 	"github.com/s1berc0de/ozon-api-client/internal/auth"
-	"github.com/s1berc0de/ozon-api-client/internal/logger"
 	"github.com/s1berc0de/ozon-api-client/ozon/category"
 	"github.com/s1berc0de/ozon-api-client/ozon/product"
 )
@@ -103,7 +102,7 @@ func NewClient(opts ...Opts) (*Client, error) {
 	}
 
 	c.h.Transport = auth.NewRoundTripper(
-		logger.NewRoundTripper(c.h.Transport),
+		c.h.Transport,
 		c.clientID,
 		c.apiKey,
 	)
