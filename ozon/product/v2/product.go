@@ -6,10 +6,10 @@ import (
 	"encoding/json"
 	"net/http"
 
-	"github.com/diphantxm/ozon-api-client/ozon/product/v2/info"
+	"github.com/s1berc0de/ozon-api-client/ozon/product/v2/info"
 
-	"github.com/diphantxm/ozon-api-client/internal/request"
 	"github.com/pkg/errors"
+	"github.com/s1berc0de/ozon-api-client/internal/request"
 )
 
 type SubRoutes struct {

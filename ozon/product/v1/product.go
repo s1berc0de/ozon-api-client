@@ -6,16 +6,16 @@ import (
 	"encoding/json"
 	"net/http"
 
-	"github.com/diphantxm/ozon-api-client/ozon/product/v1/uploaddigitalcodes"
+	"github.com/s1berc0de/ozon-api-client/ozon/product/v1/uploaddigitalcodes"
 
-	"github.com/diphantxm/ozon-api-client/ozon/product/v1/update"
+	"github.com/s1berc0de/ozon-api-client/ozon/product/v1/update"
 
-	"github.com/diphantxm/ozon-api-client/ozon/product/v1/info"
+	"github.com/s1berc0de/ozon-api-client/ozon/product/v1/info"
 
-	"github.com/diphantxm/ozon-api-client/internal/request"
-	"github.com/diphantxm/ozon-api-client/ozon/product/v1/attributes"
-	_import "github.com/diphantxm/ozon-api-client/ozon/product/v1/import"
-	"github.com/diphantxm/ozon-api-client/ozon/product/v1/pictures"
+	"github.com/s1berc0de/ozon-api-client/internal/request"
+	"github.com/s1berc0de/ozon-api-client/ozon/product/v1/attributes"
+	_import "github.com/s1berc0de/ozon-api-client/ozon/product/v1/import"
+	"github.com/s1berc0de/ozon-api-client/ozon/product/v1/pictures"
 
 	"github.com/pkg/errors"
 )

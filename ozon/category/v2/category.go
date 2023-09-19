@@ -6,8 +6,8 @@ import (
 	"encoding/json"
 	"net/http"
 
-	"github.com/diphantxm/ozon-api-client/internal/request"
-	"github.com/diphantxm/ozon-api-client/ozon/category/v2/attribute"
+	"github.com/s1berc0de/ozon-api-client/internal/request"
+	"github.com/s1berc0de/ozon-api-client/ozon/category/v2/attribute"
 
 	"github.com/pkg/errors"
 )

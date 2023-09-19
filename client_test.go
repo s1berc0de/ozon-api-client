@@ -1,9 +1,10 @@
 package core_test
 
 import (
-	core "github.com/diphantxm/ozon-api-client"
-	"github.com/stretchr/testify/require"
 	"testing"
+
+	core "github.com/s1berc0de/ozon-api-client"
+	"github.com/stretchr/testify/require"
 )
 
 const (

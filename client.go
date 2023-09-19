@@ -5,17 +5,17 @@ import (
 	"strings"
 	"time"
 
-	"github.com/diphantxm/ozon-api-client/ozon/warehouse"
+	"github.com/s1berc0de/ozon-api-client/ozon/warehouse"
 
-	"github.com/diphantxm/ozon-api-client/ozon/rating"
+	"github.com/s1berc0de/ozon-api-client/ozon/rating"
 
-	"github.com/diphantxm/ozon-api-client/ozon/products"
+	"github.com/s1berc0de/ozon-api-client/ozon/products"
 
-	"github.com/diphantxm/ozon-api-client/internal/auth"
-	"github.com/diphantxm/ozon-api-client/internal/logger"
-	"github.com/diphantxm/ozon-api-client/ozon/category"
-	"github.com/diphantxm/ozon-api-client/ozon/product"
 	"github.com/pkg/errors"
+	"github.com/s1berc0de/ozon-api-client/internal/auth"
+	"github.com/s1berc0de/ozon-api-client/internal/logger"
+	"github.com/s1berc0de/ozon-api-client/ozon/category"
+	"github.com/s1berc0de/ozon-api-client/ozon/product"
 )
 
 const (

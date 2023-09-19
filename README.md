@@ -2,7 +2,7 @@
 A Ozon Seller API client written in Golang
 
 [![Coverage Status](https://coveralls.io/repos/github/diPhantxm/ozon-api-client/badge.svg)](https://coveralls.io/github/diPhantxm/ozon-api-client)
-![example workflow](https://github.com/diPhantxm/ozon-api-client/actions/workflows/tests.yml/badge.svg)
+![example workflow](https://github.com/s1berc0de/ozon-api-client/actions/workflows/tests.yml/badge.svg)
 
 [Ozon](https://ozon.ru) is a marketplace for small and medium enterprises to launch and grow their businesses in Russia.
 
@@ -16,7 +16,7 @@ Get Client-Id and Api-Key in your seller profile [here](https://seller.ozon.ru/a
 
 Just add dependency to your project and you're ready to go.
 ```bash
-go get github.com/diphantxm/ozon-api-client
+go get github.com/s1berc0de/ozon-api-client
 ```
 A simple example on how to use this library:
 ```Golang
@@ -27,7 +27,7 @@ import (
 	"log"
 	"net/http"
 
-	"github.com/diphantxm/ozon-api-client/ozon"
+	"github.com/s1berc0de/ozon-api-client/ozon"
 )
 
 func main() {
@@ -62,7 +62,7 @@ package main
 import (
 	"log"
 
-	"github.com/diphantxm/ozon-api-client/ozon/notifications"
+	"github.com/s1berc0de/ozon-api-client/ozon/notifications"
 )
 
 func main() {
