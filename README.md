@@ -95,8 +95,9 @@ Or you can implement them and contribute to the project. Contribution to the pro
 ## Endpoints
 ### Атрибуты и характеристики Ozon
 1. /v2/category/tree ✅
-2. /v3/category/attribute ✅
-3. /v2/category/attribute/values ✅
+2. /v1/description-category/attribute/values ✅
+3. /v3/category/attribute ✅
+4. /v2/category/attribute/values ✅
 ### Загрузка и обновление товаров
 1. /v2/product/import ✅
 2. /v1/product/import/info ✅
