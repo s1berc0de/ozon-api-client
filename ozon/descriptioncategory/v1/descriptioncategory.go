@@ -7,7 +7,11 @@ import (
 )
 
 type SubRoutes struct {
-	info *attribute.Attribute
+	attribute *attribute.Attribute
+}
+
+func (c SubRoutes) Attribute() *attribute.Attribute {
+	return c.attribute
 }
 
 func New(
@@ -18,7 +22,7 @@ func New(
 		h:   h,
 		uri: uri,
 		subRoutes: &SubRoutes{
-			info: attribute.New(h, uri+"/attribute"),
+			attribute: attribute.New(h, uri+"/attribute"),
 		},
 	}
 }
