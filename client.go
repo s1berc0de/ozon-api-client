@@ -148,6 +148,6 @@ func (c Client) Warehouse() *warehouse.Warehouse {
 	return c.warehouse
 }
 
-func (c Client) DescriptionCategory() *category.Category {
-	return c.category
+func (c Client) DescriptionCategory() *descriptioncategory.DescriptionCategory {
+	return c.descriptionCategory
 }
