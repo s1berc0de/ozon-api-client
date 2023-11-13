@@ -10,6 +10,10 @@ type SubRoutes struct {
 	info *info.Info
 }
 
+func (c SubRoutes) Import() *info.Info {
+	return c.info
+}
+
 func New(
 	h *http.Client,
 	uri string,
