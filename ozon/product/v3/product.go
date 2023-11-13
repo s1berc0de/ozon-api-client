@@ -10,7 +10,7 @@ type SubRoutes struct {
 	info *info.Info
 }
 
-func (c SubRoutes) Import() *info.Info {
+func (c SubRoutes) Info() *info.Info {
 	return c.info
 }
 
