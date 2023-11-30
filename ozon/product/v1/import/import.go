@@ -50,6 +50,9 @@ func (c Import) Stocks(ctx context.Context, req *StocksRequest) (*StocksResponse
 		return nil, nil, errors.Wrap(err, "StocksRequest.NewRequest")
 	}
 
+	r.Header.Set("Content-Length", "<calculated when request is sent>")
+	r.Header.Set("Host", "<calculated when request is sent>")
+
 	return request.Send[StocksResponse](c.h, r, request.ContentTypeApplicationJson)
 }
 
