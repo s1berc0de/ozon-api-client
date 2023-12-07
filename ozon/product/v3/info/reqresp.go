@@ -25,9 +25,9 @@ type StocksResponseResultItem struct {
 }
 
 type StocksResponseResult struct {
-	Items  []StocksResponseResultItem
-	LastID string `json:"last_id"`
-	Total  int32  `json:"total"`
+	Items  []StocksResponseResultItem `json:"items"`
+	LastID string                     `json:"last_id"`
+	Total  int32                      `json:"total"`
 }
 
 type StocksResponse struct {
