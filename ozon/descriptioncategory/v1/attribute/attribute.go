@@ -25,6 +25,20 @@ type Attribute struct {
 	uri string
 }
 
+func (c Attribute) Attribute(ctx context.Context, req *AttributeRequest) (*AttributeResponse, *http.Response, error) {
+	b, err := json.Marshal(req)
+	if err != nil {
+		return nil, nil, errors.Wrap(err, "AttributeRequest.Marshal")
+	}
+
+	r, err := http.NewRequestWithContext(ctx, http.MethodPost, c.uri, bytes.NewReader(b))
+	if err != nil {
+		return nil, nil, errors.Wrap(err, "AttributeRequest.NewRequest")
+	}
+
+	return request.Send[AttributeResponse](c.h, r, request.ContentTypeApplicationJson)
+}
+
 func (c Attribute) Values(ctx context.Context, req *ValuesRequest) (*ValuesResponse, *http.Response, error) {
 	b, err := json.Marshal(req)
 	if err != nil {
