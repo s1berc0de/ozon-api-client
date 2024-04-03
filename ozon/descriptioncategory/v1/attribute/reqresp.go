@@ -27,12 +27,12 @@ type AttributeResponse struct {
 }
 
 type ValuesRequest struct {
-	AttributeID int64    `json:"attribute_id"`
-	CategoryID  int64    `json:"category_id"`
-	Language    Language `json:"language"`
-	LastValueID int64    `json:"last_value_id"`
-	Limit       int64    `json:"limit"`
-	TypeID      uint64   `json:"type_id"`
+	AttributeID           int64    `json:"attribute_id"`
+	DescriptionCategoryID int64    `json:"description_category_id"`
+	Language              Language `json:"language"`
+	LastValueID           int64    `json:"last_value_id"`
+	Limit                 int64    `json:"limit"`
+	TypeID                uint64   `json:"type_id"`
 }
 
 type ValuesResponseResult struct {
