@@ -33,7 +33,7 @@ func (c Tree) Tree(ctx context.Context, req *TreeRequest) (*TreeResponse, *http.
 
 	r, err := http.NewRequestWithContext(ctx, http.MethodPost, c.uri, bytes.NewReader(b))
 	if err != nil {
-		return nil, nil, errors.Wrap(err, "AttributeRequest.NewRequest")
+		return nil, nil, errors.Wrap(err, "TreeRequest.NewRequest")
 	}
 
 	return request.Send[TreeResponse](c.h, r, request.ContentTypeApplicationJson)
