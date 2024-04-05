@@ -1,4 +1,4 @@
-package tree
+package v1
 
 //go:generate go-enum -f=$GOFILE --marshal --names
 
