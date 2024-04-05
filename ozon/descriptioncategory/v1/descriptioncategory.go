@@ -16,6 +16,10 @@ func (c SubRoutes) Attribute() *attribute.Attribute {
 	return c.attribute
 }
 
+func (c SubRoutes) Tree() *tree.Tree {
+	return c.tree
+}
+
 func New(
 	h *http.Client,
 	uri string,
