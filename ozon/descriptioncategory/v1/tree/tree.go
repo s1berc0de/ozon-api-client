@@ -25,7 +25,7 @@ type Tree struct {
 	uri string
 }
 
-func (c Tree) Attribute(ctx context.Context, req *TreeRequest) (*TreeResponse, *http.Response, error) {
+func (c Tree) Tree(ctx context.Context, req *TreeRequest) (*TreeResponse, *http.Response, error) {
 	b, err := json.Marshal(req)
 	if err != nil {
 		return nil, nil, errors.Wrap(err, "TreeRequest.Marshal")
