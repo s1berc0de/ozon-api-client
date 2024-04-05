@@ -62,7 +62,7 @@ func TestTree_Success(t *testing.T) {
 	require.NotNil(t, httpResp)
 	require.Equal(t, httpResp.StatusCode, http.StatusOK)
 	require.EqualValues(t, &v1.TreeResponse{
-		Result: []v1.TreeResult{
+		Result: []*v1.TreeResult{
 			{
 				DescriptionCategoryID: ptr(int64(0)),
 				CategoryName:          ptr("string"),
