@@ -1,4 +1,4 @@
-package tree
+package v1
 
 type TreeRequest struct {
 	Language Language `json:"language"`
