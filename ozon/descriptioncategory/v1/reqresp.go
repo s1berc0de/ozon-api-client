@@ -14,5 +14,5 @@ type TreeResult struct {
 }
 
 type TreeResponse struct {
-	Result []TreeResult `json:"result"`
+	Result []*TreeResult `json:"result"`
 }
