@@ -56,3 +56,17 @@ func (c DescriptionCategory) Tree(ctx context.Context, req *TreeRequest) (*TreeR
 
 	return request.Send[TreeResponse](c.h, r, request.ContentTypeApplicationJson)
 }
+
+func (c DescriptionCategory) Attribute(ctx context.Context, req *AttributeRequest) (*AttributeResponse, *http.Response, error) {
+	b, err := json.Marshal(req)
+	if err != nil {
+		return nil, nil, errors.Wrap(err, "AttributeRequest.Marshal")
+	}
+
+	r, err := http.NewRequestWithContext(ctx, http.MethodPost, c.uri+"/attribute", bytes.NewReader(b))
+	if err != nil {
+		return nil, nil, errors.Wrap(err, "AttributeRequest.NewRequest")
+	}
+
+	return request.Send[AttributeResponse](c.h, r, request.ContentTypeApplicationJson)
+}
