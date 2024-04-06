@@ -49,7 +49,7 @@ func (c DescriptionCategory) Tree(ctx context.Context, req *TreeRequest) (*TreeR
 		return nil, nil, errors.Wrap(err, "TreeRequest.Marshal")
 	}
 
-	r, err := http.NewRequestWithContext(ctx, http.MethodPost, c.uri, bytes.NewReader(b))
+	r, err := http.NewRequestWithContext(ctx, http.MethodPost, c.uri+"/tree", bytes.NewReader(b))
 	if err != nil {
 		return nil, nil, errors.Wrap(err, "TreeRequest.NewRequest")
 	}

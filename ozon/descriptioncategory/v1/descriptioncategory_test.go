@@ -54,7 +54,7 @@ func TestTree_Success(t *testing.T) {
 				test.ApiKey,
 			),
 		),
-		"https://api-seller.ozon.ru/v1/description-category/tree",
+		"https://api-seller.ozon.ru/v1/description-category",
 	)
 
 	resp, httpResp, err := c.Tree(context.Background(), &v1.TreeRequest{})
