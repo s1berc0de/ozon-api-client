@@ -11,12 +11,14 @@ type ImportItemAttribute struct {
 	Values    []ImportItemAttributeValue `json:"values"`
 }
 
+type ComplexAttributeValue struct {
+	Value string `json:"value"`
+}
+
 type ComplexAttribute struct {
-	ComplexID int64 `json:"complex_id"`
-	ID        int64 `json:"id"`
-	Values    []struct {
-		Value string `json:"value"`
-	} `json:"values"`
+	ComplexID int64                   `json:"complex_id"`
+	ID        int64                   `json:"id"`
+	Values    []ComplexAttributeValue `json:"values"`
 }
 
 type ImportItem struct {
