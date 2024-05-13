@@ -40,6 +40,10 @@ type Info struct {
 	subRoutes *SubRoutes
 }
 
+func (c Info) SubRoutes() *SubRoutes {
+	return c.subRoutes
+}
+
 func (c Info) Description(ctx context.Context, req *DescriptionRequest) (*DescriptionResponse, *http.Response, error) {
 	b, err := json.Marshal(req)
 	if err != nil {
