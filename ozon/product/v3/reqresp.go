@@ -1,7 +1,7 @@
 package v3
 
 type ImportItemAttributeValue struct {
-	DictionaryValueID int64  `json:"dictionary_value_id"`
+	DictionaryValueID *int64 `json:"dictionary_value_id,omitempty"`
 	Value             string `json:"value"`
 }
 
