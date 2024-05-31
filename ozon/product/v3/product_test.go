@@ -6,6 +6,7 @@ import (
 	"github.com/s1berc0de/ozon-api-client/internal/auth"
 	"github.com/s1berc0de/ozon-api-client/internal/test"
 	v3 "github.com/s1berc0de/ozon-api-client/ozon/product/v3"
+	"github.com/s1berc0de/ozon-api-client/pkg/util"
 	"github.com/stretchr/testify/require"
 	"io"
 	"net/http"
@@ -35,8 +36,6 @@ func TestImport_Success(t *testing.T) {
 	)
 	require.NotNil(t, c)
 
-	dictionaryValueID := int64(971082156)
-
 	resp, httpResp, err := c.Import(context.Background(), &v3.ImportRequest{
 		Items: []v3.ImportItem{
 			{
@@ -46,7 +45,7 @@ func TestImport_Success(t *testing.T) {
 						ID:        5076,
 						Values: []v3.ImportItemAttributeValue{
 							{
-								DictionaryValueID: &dictionaryValueID,
+								DictionaryValueID: util.PtrOfCopy(int64(971082156)),
 								Value:             "Стойка для акустической системы",
 							},
 						},
