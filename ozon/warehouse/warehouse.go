@@ -18,3 +18,7 @@ func New(
 type Warehouse struct {
 	v1 *v1.Warehouse
 }
+
+func (w *Warehouse) V1() *v1.Warehouse {
+	return w.v1
+}
