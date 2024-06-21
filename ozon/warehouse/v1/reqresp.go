@@ -25,7 +25,7 @@ type ListResponseResult struct {
 	PostingsLimit          int32                           `json:"postings_limit"`
 	MinWorkingDays         int64                           `json:"min_working_days"`
 	Status                 ListResponseResultStatus        `json:"status"`
-	WorkingDays            []ListResponseResultWorkingDay  `json:"working_days"`
+	WorkingDays            []int32                         `json:"working_days"`
 }
 
 type ListResponse struct {
