@@ -30,7 +30,8 @@ func TestHistory_Success(t *testing.T) {
 								{
 									"warehouse_id": 15588127982000,
 									"name": "Proffi (Панорама Групп)",
-									"is_rfbs": false
+									"is_rfbs": false,
+									"working_days": [1,2,3,4,5]
 								},
 								{
 									"warehouse_id": 22142605386000,
@@ -69,6 +70,7 @@ func TestHistory_Success(t *testing.T) {
 				WarehouseID: 15588127982000,
 				Name:        "Proffi (Панорама Групп)",
 				IsRFBS:      false,
+				WorkingDays: []int32{1, 2, 3, 4, 5},
 			},
 			{
 				WarehouseID: 22142605386000,
