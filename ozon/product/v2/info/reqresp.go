@@ -81,16 +81,20 @@ type ListResponseResultItemStocks struct {
 	Reserved int32 `json:"reserved"`
 }
 
+type ListResponseResultItemVisibilityDetailsReasons struct {
+	Reasons []ListResponseResultItemVisibilityDetailsReason `json:"reasons"`
+}
+
 type ListResponseResultItemVisibilityDetailsReason struct {
 	Description string `json:"description"`
 	ID          int64  `json:"id"`
 }
 
 type ListResponseResultItemVisibilityDetails struct {
-	ActiveProduct bool                                            `json:"active_product"`
-	HasPrice      bool                                            `json:"has_price"`
-	HasStock      bool                                            `json:"has_stock"`
-	Reasons       []ListResponseResultItemVisibilityDetailsReason `json:"reasons"`
+	ActiveProduct bool                                                      `json:"active_product"`
+	HasPrice      bool                                                      `json:"has_price"`
+	HasStock      bool                                                      `json:"has_stock"`
+	Reasons       map[string]ListResponseResultItemVisibilityDetailsReasons `json:"reasons"`
 }
 
 type ListResponseResultItem struct {

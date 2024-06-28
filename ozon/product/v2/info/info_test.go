@@ -82,7 +82,16 @@ func TestList_Success(t *testing.T) {
 											"has_price": false,
 											"has_stock": true,
 											"active_product": false,
-											"reasons": []
+											"reasons": {
+												"field1": {
+													"reasons": [
+														{
+															"id": 1, 
+															"description": "descr"
+														}
+													]
+												}
+											}
 										},
 										"price_indexes": {
 								  			"external_index_data": {
@@ -162,7 +171,7 @@ func TestList_Success(t *testing.T) {
 											"has_price": false,
 											"has_stock": true,
 											"active_product": false,
-											"reasons": []
+											"reasons": {}
 										},
 										"price_index": "0.00",
 										"images360": [],
@@ -262,7 +271,16 @@ func TestList_Success(t *testing.T) {
 						HasPrice:      false,
 						HasStock:      true,
 						ActiveProduct: false,
-						Reasons:       make([]info.ListResponseResultItemVisibilityDetailsReason, 0),
+						Reasons: map[string]info.ListResponseResultItemVisibilityDetailsReasons{
+							"field1": {
+								Reasons: []info.ListResponseResultItemVisibilityDetailsReason{
+									{
+										Description: "descr",
+										ID:          1,
+									},
+								},
+							},
+						},
 					},
 					PriceIndexes: info.ListResponseResultItemPriceIndexes{
 						ExternalIndexData: info.ListResponseResultItemPriceIndexesExternalIndexData{
@@ -340,7 +358,7 @@ func TestList_Success(t *testing.T) {
 						HasPrice:      false,
 						HasStock:      true,
 						ActiveProduct: false,
-						Reasons:       make([]info.ListResponseResultItemVisibilityDetailsReason, 0),
+						Reasons:       map[string]info.ListResponseResultItemVisibilityDetailsReasons{},
 					},
 					PriceIndex:   "0.00",
 					Images360:    make([]string, 0),
