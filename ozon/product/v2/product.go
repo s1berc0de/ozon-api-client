@@ -41,6 +41,10 @@ func (c Product) SubRoutes() *SubRoutes {
 	return c.subRoutes
 }
 
+func (s *SubRoutes) Info() *info.Info {
+	return s.info
+}
+
 func (c Product) Import(ctx context.Context, req *ImportRequest) (*ImportResponse, *http.Response, error) {
 	b, err := json.Marshal(req)
 	if err != nil {
