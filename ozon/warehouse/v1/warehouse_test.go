@@ -13,7 +13,7 @@ import (
 	"github.com/stretchr/testify/require"
 )
 
-func TestHistory_Success(t *testing.T) {
+func TestWarehouseList_Success(t *testing.T) {
 	c := v1.New(
 		test.NewTestClient(
 			auth.NewRoundTripper(
@@ -31,7 +31,14 @@ func TestHistory_Success(t *testing.T) {
 									"warehouse_id": 15588127982000,
 									"name": "Proffi (Панорама Групп)",
 									"is_rfbs": false,
-									"working_days": [1,2,3,4,5]
+									"first_mile_type": {
+										"dropoff_point_id": "123",
+										"dropoff_timeslot_id": 1,
+										"first_mile_is_changing": true,
+										"first_mile_type": "DropOff"
+									},
+									"working_days": [1,2,3,4,5],
+									"status": "new"
 								},
 								{
 									"warehouse_id": 22142605386000,
@@ -70,7 +77,14 @@ func TestHistory_Success(t *testing.T) {
 				WarehouseID: 15588127982000,
 				Name:        "Proffi (Панорама Групп)",
 				IsRFBS:      false,
+				FirstMileType: v1.ListResponseResultFirstMileType{
+					DropoffPointID:      "123",
+					DropoffTimeslotID:   1,
+					FirstMileIsChanging: true,
+					FirstMileType:       "DropOff",
+				},
 				WorkingDays: []int32{1, 2, 3, 4, 5},
+				Status:      "new",
 			},
 			{
 				WarehouseID: 22142605386000,
