@@ -4,10 +4,10 @@ type ListRequest struct {
 }
 
 type ListResponseResultFirstMileType struct {
-	DropoffPointID      string                                       `json:"dropoff_point_id"`
-	DropoffTimeslotID   int64                                        `json:"dropoff_timeslot_id"`
-	FirstMileIsChanging bool                                         `json:"first_mile_is_changing"`
-	FirstMileType       ListResponseResultFirstMileTypeFirstMileType `json:"first_mile_type"`
+	DropoffPointID      string `json:"dropoff_point_id"`
+	DropoffTimeslotID   int64  `json:"dropoff_timeslot_id"`
+	FirstMileIsChanging bool   `json:"first_mile_is_changing"`
+	FirstMileType       string `json:"first_mile_type"`
 }
 
 type ListResponseResult struct {
@@ -24,7 +24,7 @@ type ListResponseResult struct {
 	MinPostingsLimit       int32                           `json:"min_postings_limit"`
 	PostingsLimit          int32                           `json:"postings_limit"`
 	MinWorkingDays         int64                           `json:"min_working_days"`
-	Status                 ListResponseResultStatus        `json:"status"`
+	Status                 string                          `json:"status"`
 	WorkingDays            []int32                         `json:"working_days"`
 }
 
