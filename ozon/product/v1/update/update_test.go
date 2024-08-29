@@ -7,10 +7,10 @@ import (
 	"net/http"
 	"testing"
 
-	"github.com/s1berc0de/ozon-api-client/ozon/product/v1/update"
+	"github.com/andmetoo/ozon-api-client/ozon/product/v1/update"
 
-	"github.com/s1berc0de/ozon-api-client/internal/auth"
-	"github.com/s1berc0de/ozon-api-client/internal/test"
+	"github.com/andmetoo/ozon-api-client/internal/auth"
+	"github.com/andmetoo/ozon-api-client/internal/test"
 	"github.com/stretchr/testify/require"
 )
 

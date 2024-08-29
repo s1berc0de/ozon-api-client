@@ -4,11 +4,11 @@ import (
 	"bytes"
 	"context"
 	"encoding/json"
+	"github.com/andmetoo/ozon-api-client/internal/request"
 	"github.com/pkg/errors"
-	"github.com/s1berc0de/ozon-api-client/internal/request"
 	"net/http"
 
-	"github.com/s1berc0de/ozon-api-client/ozon/product/v3/info"
+	"github.com/andmetoo/ozon-api-client/ozon/product/v3/info"
 )
 
 type SubRoutes struct {

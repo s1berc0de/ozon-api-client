@@ -3,11 +3,11 @@ package product
 import (
 	"net/http"
 
-	v3 "github.com/s1berc0de/ozon-api-client/ozon/product/v3"
+	v3 "github.com/andmetoo/ozon-api-client/ozon/product/v3"
 
-	v1 "github.com/s1berc0de/ozon-api-client/ozon/product/v1"
-	v2 "github.com/s1berc0de/ozon-api-client/ozon/product/v2"
-	v4 "github.com/s1berc0de/ozon-api-client/ozon/product/v4"
+	v1 "github.com/andmetoo/ozon-api-client/ozon/product/v1"
+	v2 "github.com/andmetoo/ozon-api-client/ozon/product/v2"
+	v4 "github.com/andmetoo/ozon-api-client/ozon/product/v4"
 )
 
 func New(

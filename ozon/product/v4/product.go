@@ -3,7 +3,7 @@ package v4
 import (
 	"net/http"
 
-	"github.com/s1berc0de/ozon-api-client/ozon/product/v4/info"
+	"github.com/andmetoo/ozon-api-client/ozon/product/v4/info"
 )
 
 type SubRoutes struct {

@@ -8,9 +8,9 @@ import (
 	"testing"
 	"time"
 
-	"github.com/s1berc0de/ozon-api-client/internal/auth"
-	"github.com/s1berc0de/ozon-api-client/internal/test"
-	"github.com/s1berc0de/ozon-api-client/ozon/product/v2/info"
+	"github.com/andmetoo/ozon-api-client/internal/auth"
+	"github.com/andmetoo/ozon-api-client/internal/test"
+	"github.com/andmetoo/ozon-api-client/ozon/product/v2/info"
 	"github.com/stretchr/testify/require"
 )
 

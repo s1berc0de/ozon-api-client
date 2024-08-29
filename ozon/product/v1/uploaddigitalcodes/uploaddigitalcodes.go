@@ -6,8 +6,8 @@ import (
 	"encoding/json"
 	"net/http"
 
+	"github.com/andmetoo/ozon-api-client/internal/request"
 	"github.com/pkg/errors"
-	"github.com/s1berc0de/ozon-api-client/internal/request"
 )
 
 func New(

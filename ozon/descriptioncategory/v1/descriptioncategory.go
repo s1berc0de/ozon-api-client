@@ -6,9 +6,9 @@ import (
 	"encoding/json"
 	"net/http"
 
+	"github.com/andmetoo/ozon-api-client/internal/request"
+	"github.com/andmetoo/ozon-api-client/ozon/descriptioncategory/v1/attribute"
 	"github.com/pkg/errors"
-	"github.com/s1berc0de/ozon-api-client/internal/request"
-	"github.com/s1berc0de/ozon-api-client/ozon/descriptioncategory/v1/attribute"
 )
 
 type SubRoutes struct {

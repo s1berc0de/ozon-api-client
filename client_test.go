@@ -3,7 +3,7 @@ package core_test
 import (
 	"testing"
 
-	core "github.com/s1berc0de/ozon-api-client"
+	core "github.com/andmetoo/ozon-api-client"
 	"github.com/stretchr/testify/require"
 )
 

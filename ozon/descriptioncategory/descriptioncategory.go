@@ -3,7 +3,7 @@ package descriptioncategory
 import (
 	"net/http"
 
-	v1 "github.com/s1berc0de/ozon-api-client/ozon/descriptioncategory/v1"
+	v1 "github.com/andmetoo/ozon-api-client/ozon/descriptioncategory/v1"
 )
 
 func New(

@@ -3,8 +3,8 @@ package category
 import (
 	"net/http"
 
-	v2 "github.com/s1berc0de/ozon-api-client/ozon/category/v2"
-	v3 "github.com/s1berc0de/ozon-api-client/ozon/category/v3"
+	v2 "github.com/andmetoo/ozon-api-client/ozon/category/v2"
+	v3 "github.com/andmetoo/ozon-api-client/ozon/category/v3"
 )
 
 func New(
