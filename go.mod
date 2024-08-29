@@ -1,4 +1,4 @@
-module github.com/s1berc0de/ozon-api-client
+module github.com/andmetoo/ozon-api-client
 
 go 1.18
 
