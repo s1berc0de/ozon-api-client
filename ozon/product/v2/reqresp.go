@@ -107,11 +107,11 @@ type InfoRequest struct {
 }
 
 type InfoResponseResultCommission struct {
-	DeliveryAmount float64 `json:"deliveryAmount"`
-	MinValue       float64 `json:"minValue"`
+	DeliveryAmount float64 `json:"delivery_amount"`
+	MinValue       float64 `json:"min_value"`
 	Percent        float64 `json:"percent"`
-	ReturnAmount   float64 `json:"returnAmount"`
-	SaleSchema     string  `json:"saleSchema"`
+	ReturnAmount   float64 `json:"return_amount"`
+	SaleSchema     string  `json:"sale_schema"`
 	Value          float64 `json:"value"`
 }
 
