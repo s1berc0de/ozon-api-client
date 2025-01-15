@@ -1,6 +1,6 @@
 package attribute
 
-//go:generate go-enum -f=$GOFILE --marshal --names
+//go:generate go run github.com/abice/go-enum -f=$GOFILE --marshal --names
 
 // Language
 // ENUM(DEFAULT=0, RU, EN, TR, ZH_HANS)

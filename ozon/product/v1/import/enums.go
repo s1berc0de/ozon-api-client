@@ -1,6 +1,6 @@
 package _import
 
-//go:generate go-enum -f=$GOFILE --marshal --names
+//go:generate go run github.com/abice/go-enum -f=$GOFILE --marshal --names
 
 // InfoResponseResultItemStatus
 // ENUM(pending=1, imported, failed)

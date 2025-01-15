@@ -1,6 +1,6 @@
 package v1
 
-//go:generate go-enum -f=$GOFILE --marshal --names
+//go:generate go run github.com/abice/go-enum -f=$GOFILE --marshal --names
 
 // SummaryResponseGroupItemChangeDirection
 // ENUM(DIRECTION_UNKNOWN=1, DIRECTION_NONE, DIRECTION_RISE, DIRECTION_FALL)

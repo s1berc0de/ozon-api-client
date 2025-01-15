@@ -1,6 +1,6 @@
 package uploaddigitalcodes
 
-//go:generate go-enum -f=$GOFILE --marshal --names
+//go:generate go run github.com/abice/go-enum -f=$GOFILE --marshal --names
 
 // InfoResponseResultStatus
 // ENUM(pending=1, imported, failed)

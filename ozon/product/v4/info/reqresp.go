@@ -135,3 +135,41 @@ type PricesResponseResult struct {
 type PricesResponse struct {
 	Result PricesResponseResult `json:"result"`
 }
+
+type StocksRequestFilterWithQuant struct {
+	Created bool `json:"created"`
+	Exists  bool `json:"exists"`
+}
+
+type StocksRequestFilter struct {
+	OfferID    []string                      `json:"offer_id"`
+	ProductID  []string                      `json:"product_id"`
+	Visibility StocksRequestFilterVisibility `json:"visibility"`
+	WithQuant  StocksRequestFilterWithQuant  `json:"with_quant"`
+}
+
+type StocksRequest struct {
+	Cursor string              `json:"cursor"`
+	Filter StocksRequestFilter `json:"filter"`
+	Limit  int32               `json:"limit"`
+}
+
+type StocksResponseItemStock struct {
+	Present      int32                               `json:"present"`
+	Reserved     int32                               `json:"reserved"`
+	ShipmentType StocksResponseItemStockShipmentType `json:"shipment_type"`
+	SKU          int64                               `json:"sku"`
+	Type         string                              `json:"type"`
+}
+
+type StocksResponseItem struct {
+	OfferID   string                    `json:"offer_id"`
+	ProductID int64                     `json:"product_id"`
+	Stocks    []StocksResponseItemStock `json:"stocks"`
+}
+
+type StocksResponse struct {
+	Cursor string               `json:"cursor"`
+	Items  []StocksResponseItem `json:"items"`
+	Total  int32                `json:"total"`
+}

@@ -52,3 +52,17 @@ func (c Info) Prices(ctx context.Context, req *PricesRequest) (*PricesResponse, 
 
 	return request.Send[PricesResponse](c.h, r, request.ContentTypeApplicationJson)
 }
+
+func (c Info) Stocks(ctx context.Context, req *StocksRequest) (*StocksResponse, *http.Response, error) {
+	b, err := json.Marshal(req)
+	if err != nil {
+		return nil, nil, errors.Wrap(err, "StocksRequest.Marshal")
+	}
+
+	r, err := http.NewRequestWithContext(ctx, http.MethodPost, c.uri+"/stocks", bytes.NewReader(b))
+	if err != nil {
+		return nil, nil, errors.Wrap(err, "StocksRequest.NewRequest")
+	}
+
+	return request.Send[StocksResponse](c.h, r, request.ContentTypeApplicationJson)
+}

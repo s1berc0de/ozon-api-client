@@ -1,6 +1,6 @@
 package v2
 
-//go:generate go-enum -f=$GOFILE --marshal --names
+//go:generate go run github.com/abice/go-enum -f=$GOFILE --marshal --names
 
 // ImportRequestItemCurrencyCode
 // ENUM(RUB=0, BYN, KZT, EUR, USD, CNY)

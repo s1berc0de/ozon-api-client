@@ -1,6 +1,6 @@
 package pictures
 
-//go:generate go-enum -f=$GOFILE --marshal --names
+//go:generate go run github.com/abice/go-enum -f=$GOFILE --marshal --names
 
 // ImportResponseResultPictureState
 // ENUM(imported=1, uploaded, failed)

@@ -1,6 +1,6 @@
 package info
 
-//go:generate go-enum -f=$GOFILE --marshal --names
+//go:generate go run github.com/abice/go-enum -f=$GOFILE --marshal --names
 
 // ListResponseResultItemCurrencyCode
 // ENUM(RUB=1, BYN, KZT, EUR, USD, CNY)

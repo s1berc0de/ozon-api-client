@@ -245,3 +245,85 @@ func TestPrices_Success(t *testing.T) {
 		},
 	}, resp)
 }
+
+func TestStocks_Success(t *testing.T) {
+	c := info.New(
+		test.NewTestClient(
+			auth.NewRoundTripper(
+				test.RoundTripFunc(func(r *http.Request) *http.Response {
+					require.Equal(t, "https://api-seller.ozon.ru/v4/product/info/stocks", test.FullURL(r))
+					require.Equal(t, test.ApiKey, r.Header.Get(auth.APIKeyHeader))
+					require.Equal(t, test.ClientID, r.Header.Get(auth.ClientIDHeader))
+					require.Equal(t, `{"cursor":"string","filter":{"offer_id":["string"],"product_id":["string"],"visibility":"ALL","with_quant":{"created":true,"exists":true}},"limit":0}`, test.Body(t, r))
+
+					return &http.Response{
+						StatusCode: http.StatusOK,
+						Body: io.NopCloser(bytes.NewBufferString(`{
+							"cursor": "string",
+							"items": [
+								{
+									"offer_id": "string",
+									"product_id": 0,
+									"stocks": [
+										{
+											"present": 0,
+											"reserved": 0,
+											"shipment_type": "SHIPMENT_TYPE_GENERAL",
+											"sku": 0,
+											"type": "string"
+										}
+									]
+								}
+							],
+							"total": 0
+						}`)),
+					}
+				}),
+				test.ClientID,
+				test.ApiKey,
+			),
+		),
+		"https://api-seller.ozon.ru/v4/product/info",
+	)
+	require.NotNil(t, c)
+
+	resp, httpResp, err := c.Stocks(context.Background(), &info.StocksRequest{
+		Cursor: "string",
+		Filter: info.StocksRequestFilter{
+			OfferID: []string{
+				"string",
+			},
+			ProductID: []string{
+				"string",
+			},
+			Visibility: info.StocksRequestFilterVisibilityALL,
+			WithQuant: info.StocksRequestFilterWithQuant{
+				Created: true,
+				Exists:  true,
+			},
+		},
+		Limit: 0,
+	})
+	require.Nil(t, err)
+	require.NotNil(t, httpResp)
+	require.Equal(t, httpResp.StatusCode, http.StatusOK)
+	require.EqualValues(t, &info.StocksResponse{
+		Cursor: "string",
+		Items: []info.StocksResponseItem{
+			{
+				OfferID:   "string",
+				ProductID: 0,
+				Stocks: []info.StocksResponseItemStock{
+					{
+						Present:      0,
+						Reserved:     0,
+						ShipmentType: info.StocksResponseItemStockShipmentTypeSHIPMENTTYPEGENERAL,
+						SKU:          0,
+						Type:         "string",
+					},
+				},
+			},
+		},
+		Total: 0,
+	}, resp)
+}
